@@ -9,3 +9,4 @@ export const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   // other routes can be added here
 ];
+

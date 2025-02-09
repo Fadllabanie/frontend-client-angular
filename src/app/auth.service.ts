@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,18 @@ import { throwError } from 'rxjs';
 export class AuthService {
 
   private registerUrl = 'http://localhost:8765/fawrybook-auth/api/v1/auth/register';
-  private loginUrl = 'http://localhost:8765/fawrybook-auth/api/v1/auth/login';
+  private loginUrl = 'http://localhost:8015/api/v1/auth/login';
 
-  
+
   constructor(private http: HttpClient) { }
 
-  login(credentials: { email: string, password: string }) {
-    return this.http.post<any>(this.loginUrl, credentials);
+  login(credentials: { username: string; password: string }): Observable<any> {
+    return this.http.post<any>(this.loginUrl, credentials, {
+      withCredentials: true 
+    });
   }
 
-  register(user: { email: string, password: string, confirmPassword: string }) {
+  register(user: { username: string, password: string, confirmPassword: string }) {
     return this.http.post<any>(this.registerUrl, user)
       .pipe(
         catchError((error) => {
