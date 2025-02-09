@@ -1,1 +1,23 @@
-<p>post works!</p>
+<!-- posts.component.html -->
+<div class="posts-container">
+    <h2>Latest Posts</h2>
+    
+    <div *ngFor="let post of posts" class="post-card">
+      <h3>{{ post.title }}</h3>
+      <p class="content">{{ post.content }}</p>
+      <div class="post-meta">
+        <span>Posted on: {{ post.createdAt | date }}</span>
+        <span>Likes: {{ post.likes }}</span>
+      </div>
+    </div>
+  
+    <div class="pagination">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">
+        Previous
+      </button>
+      <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">
+        Next
+      </button>
+    </div>
+  </div>
