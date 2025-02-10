@@ -21,7 +21,9 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-
+  moveLogin(): void {
+    this.router.navigate(['/login']);
+  }
   onSubmit(): void {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({

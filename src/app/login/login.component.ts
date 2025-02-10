@@ -21,6 +21,9 @@ export class LoginComponent {
     });
   }
 
+  register(): void {
+    this.router.navigate(['/register']);
+  }
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({

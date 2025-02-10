@@ -26,6 +26,31 @@ export class AuthService {
       );
   }
 
+  register(user: { username: string, password: string, confirmPassword: string }) {
+    return this.http.post<any>(this.registerUrl, user, { withCredentials: true })
+    .pipe(
+      tap(response => {
+        if (response.data?.token) {
+          this.setToken(response.data.token);
+        }
+      })
+    );
+
+    // return this.http.post<any>(this.registerUrl, user)
+    //   .pipe(
+    //     catchError((error) => {
+    //       console.error('Error occurred:', error);
+    //       return throwError(() => new Error('Error in registration process'));
+    //     })
+    //   );
+  }
+
+
+ 
+  logout(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
+
   setToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
   }
@@ -38,17 +63,4 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-  }
-
-  register(user: { username: string, password: string, confirmPassword: string }) {
-    return this.http.post<any>(this.registerUrl, user)
-      .pipe(
-        catchError((error) => {
-          console.error('Error occurred:', error);
-          return throwError(() => new Error('Error in registration process'));
-        })
-      );
-  }
 }
