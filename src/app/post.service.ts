@@ -47,6 +47,7 @@ export class PostService {
   }
 
   deleteComment(commentId: number) {
+    console.log(commentId);
     return this.http.delete(`${this.commentsUrl}/${commentId}`);
   }
   
