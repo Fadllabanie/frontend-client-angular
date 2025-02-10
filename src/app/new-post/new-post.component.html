@@ -1,9 +1,7 @@
 <div class="container mt-4">
   <header class="d-flex justify-content-between align-items-center">
     <h1>FawryBook Posts</h1>
-    <button (click)="movePost()" class="btn btn-primary">
-      Back
-    </button>
+    <button (click)="movePost()" class="btn btn-primary">Back</button>
   </header>
 
   <div class="container mt-5">
@@ -14,17 +12,17 @@
           <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" formControlName="title" placeholder="Enter title">
-            <div *ngIf="postForm.get('title').errors && postForm.get('title').dirty" class="text-danger">
-              <div *ngIf="postForm.get('title').errors['required']">Title is required.</div>
-              <div *ngIf="postForm.get('title').errors['minlength']">Title must be at least 3 characters long.</div>
+            <div *ngIf="postForm.get('title')!.touched && postForm.get('title')!.errors" class="text-danger">
+              <div *ngIf="postForm.get('title')!.errors!['required']">Title is required.</div>
+              <div *ngIf="postForm.get('title')!.errors!['minlength']">Title must be at least 3 characters long.</div>
             </div>
           </div>
           <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <textarea class="form-control" formControlName="content" placeholder="Enter content" rows="5"></textarea>
-            <div *ngIf="postForm.get('content').errors && postForm.get('content').dirty" class="text-danger">
-              <div *ngIf="postForm.get('content').errors['required']">Content is required.</div>
-              <div *ngIf="postForm.get('content').errors['minlength']">Content must be at least 6 characters long.</div>
+            <div *ngIf="postForm.get('content')!.touched && postForm.get('content')!.errors" class="text-danger">
+              <div *ngIf="postForm.get('content')!.errors!['required']">Content is required.</div>
+              <div *ngIf="postForm.get('content')!.errors!['minlength']">Content must be at least 6 characters long.</div>
             </div>
           </div>
           <button type="submit" class="btn btn-primary w-100">Submit</button>
