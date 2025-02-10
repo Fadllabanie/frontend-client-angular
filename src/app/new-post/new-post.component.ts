@@ -35,6 +35,7 @@ export class NewPostComponent {
           // Handle further actions like redirection or display success message
         },
         error: (error) => {
+          
           console.error('Post creation failed', error);
           // Handle errors, show user feedback
         }

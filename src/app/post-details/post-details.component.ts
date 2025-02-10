@@ -63,7 +63,11 @@ export class PostDetailsComponent implements OnInit {
       next: () => {
         this.loadPost(this.post.id);
       },
-      error: (error) => console.error('Error deleting comment:', error)
+      error: (error) => {
+        const errorResponse = error.error;
+        alert(`Error deleting comment: ${errorResponse.error}`);
+        console.error('Error deleting comment:', error);
+      }
     });
   }
 }
