@@ -3,13 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../post.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common'; // Add this import
 
 @Component({
   selector: 'app-update-post',
   templateUrl: './update-post.component.html',
   styleUrls: ['./update-post.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule]  
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule]  
 })
 
 export class UpdatePostComponent implements OnInit {
@@ -23,7 +24,7 @@ export class UpdatePostComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.postForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3)]],
+      title: ['', [Validators.required, Validators.minLength(10)]],
       content: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
@@ -57,5 +58,9 @@ export class UpdatePostComponent implements OnInit {
         error: (error) => alert('Error updating post: ' + error)
       });
     }
+  }
+
+  movePost(): void {
+    this.router.navigate(['/posts']);
   }
 }
