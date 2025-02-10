@@ -52,4 +52,54 @@ export class PostsComponent implements OnInit {
   addPost(): void {
     this.router.navigate(['/posts/new']);
   }
+  
+  likePost(postId: number) {
+    this.postService.likePost(postId).subscribe({
+      next: (response) => {
+        const index = this.posts.findIndex(post => post.id === postId);
+        if (index !== -1) {
+          this.posts[index].likes++;  // Increment likes locally
+        }
+        alert('Post liked successfully');
+
+        console.log('Post liked successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error liking post:', error);
+      }
+    });
+  }
+  dislikePost(postId: number) {
+    this.postService.dislikePost(postId).subscribe({
+      next: (response) => {
+        const index = this.posts.findIndex(post => post.id === postId);
+        if (index !== -1) {
+          this.posts[index].likes--;  // Increment likes locally
+        }
+        alert('Post disliked successfully');
+        console.log('Post disliked successfully:', response);
+      },
+      error: (error) => {
+        alert('Error disliking post:'+error);
+
+        console.error('Error disliking post:', error);
+      }
+    });
+  }
+  deletePost(postId: number) {
+    this.postService.deletePost(postId).subscribe({
+      next: (response) => {
+        const index = this.posts.findIndex(post => post.id === postId);
+        this.loadPosts(this.currentPage);
+      
+        console.log('Post deleted successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error disliking post:', error);
+      }
+    });
+  }
+  updatePost(postId: number) {
+    this.router.navigate(['/posts/update', postId]);
+  }
 }

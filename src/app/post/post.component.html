@@ -22,8 +22,12 @@
           <div class="card-footer bg-white d-flex justify-content-between align-items-center">
             <small class="text-muted">📅 {{ post.createdAt | date: 'mediumDate' }}</small>
             <div>
-              <span class="badge bg-primary">❤️ {{ post.likes }} Likes</span>
-              <span class="badge bg-info">💬 {{ post.comments.length }} Comments</span>
+              <span class="badge bg-primary m-1" (click)="likePost(post.id)" style="cursor: pointer;">❤️ {{ post.likes }} Likes</span>
+              <span class="badge bg-info m-1" (click)="dislikePost(post.id)" style="cursor: pointer;">💔 Dislikes</span>
+              <span class="badge bg-primary m-1">💬 {{ post.comments.length }} Comments</span>
+              <span class="badge bg-danger m-1" (click)="deletePost(post.id)" style="cursor: pointer;">Delete</span>
+              <span class="badge bg-info m-1" (click)="updatePost(post.id)" style="cursor: pointer;">update</span>
+
             </div>
           </div>
         </div>

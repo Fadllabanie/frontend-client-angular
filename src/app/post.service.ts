@@ -16,16 +16,28 @@ export class PostService {
     return this.http.get<any>(this.postsUrl, { params });
   }
 
+  getPostById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.postsUrl}/${id}`);
+  }
+  
+  likePost(postId: number): Observable<any> {
+    return this.http.post<any>(`${this.postsUrl}/${postId}/like`, {});
+  }
+  dislikePost(postId: number): Observable<any> {
+    return this.http.post<any>(`${this.postsUrl}/${postId}/dislike`, {});
+  }
+
   addPost(post: any) {
     return this.http.post<any>(this.postsUrl, post);
-    // API call to add a new post
   }
 
-  updatePost(post: any) {
-    // API call to update a post
+  updatePost(id: number, postData: { title: string; content: string }): Observable<any> {
+    return this.http.put(`${this.postsUrl}/${id}`, postData);
+  }
+  
+  deletePost(postId: number) {
+    return this.http.delete<any>(`${this.postsUrl}/${postId}`);
   }
 
-  deletePost(id: number) {
-    // API call to delete a post
-  }
+
 }

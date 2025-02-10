@@ -26,6 +26,8 @@ export class NewPostComponent {
       this.postService.addPost(this.postForm.value).subscribe({
         next: (response) => {
           console.log('Post created successfully', response);
+          alert('Post create successfully');
+
           this.router.navigate(['/posts']);
           // Handle further actions like redirection or display success message
         },
