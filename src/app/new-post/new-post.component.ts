@@ -21,6 +21,9 @@ export class NewPostComponent {
     });
   }
 
+  movePost(): void {
+    this.router.navigate(['/posts']);
+  }
   onSubmit(): void {
     if (this.postForm.valid) {
       this.postService.addPost(this.postForm.value).subscribe({
@@ -37,6 +40,7 @@ export class NewPostComponent {
         }
       });
     } else {
+      this.postForm.markAllAsTouched();
       console.log('Form is not valid');
     }
   }
