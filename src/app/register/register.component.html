@@ -12,14 +12,26 @@
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" formControlName="username" placeholder="Enter username">
+            <div *ngIf="registerForm.get('username')!.touched && registerForm.get('username')!.errors" class="text-danger">
+              <div *ngIf="registerForm.get('username')!.errors!['required']">Username is required.</div>
+              <div *ngIf="registerForm.get('username')!.errors!['minlength']">Username must be at least 3 characters long.</div>
+            </div>
           </div>
           <div class="mb-3">
             <label for="phone" class="form-label">Phone</label>
             <input type="tel" class="form-control" formControlName="phone" placeholder="Enter phone number">
+            <div *ngIf="registerForm.get('phone')!.touched && registerForm.get('phone')!.errors" class="text-danger">
+              <div *ngIf="registerForm.get('phone')!.errors!['required']">Phone is required.</div>
+              <div *ngIf="registerForm.get('phone')!.errors!['pattern']">Phone must be a valid phone number.</div>
+            </div>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" formControlName="password" placeholder="Enter password">
+            <div *ngIf="registerForm.get('password')!.touched && registerForm.get('password')!.errors" class="text-danger">
+              <div *ngIf="registerForm.get('password')!.errors!['required']">Password is required.</div>
+              <div *ngIf="registerForm.get('password')!.errors!['minlength']">Password must be at least 8 characters long.</div>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary w-100">Register</button>
         </form>

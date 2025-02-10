@@ -4,7 +4,7 @@
     <h1>FawryBook Posts</h1>
     <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="btn btn-danger">
       Logout
-    </button> 
+    </button>
     <button *ngIf="authService.isLoggedIn()" (click)="addPost()" class="btn btn-primary">
       Add Post
     </button>
@@ -15,14 +15,15 @@
       <!-- Use the card component for each post -->
       <div *ngFor="let post of posts" class="col-md-6 col-lg-4 mb-4">
         <div class="card h-100 shadow-sm" style="cursor: pointer;">
-          <div class="card-body"  (click)="openPostDetails(post.id)">
+          <div class="card-body" (click)="openPostDetails(post.id)">
             <h5 class="card-title">{{ post.title }}</h5>
             <p class="card-text">{{ post.content }}</p>
           </div>
           <div class="card-footer bg-white d-flex justify-content-between align-items-center">
             <small class="text-muted">📅 {{ post.createdAt | date: 'mediumDate' }}</small>
             <div>
-              <span class="badge bg-primary m-1" (click)="likePost(post.id)" style="cursor: pointer;">❤️ {{ post.likes }} Likes</span>
+              <span class="badge bg-primary m-1" (click)="likePost(post.id)" style="cursor: pointer;">❤️ {{ post.likes
+                }} Likes</span>
               <span class="badge bg-info m-1" (click)="dislikePost(post.id)" style="cursor: pointer;">💔 Dislikes</span>
               <span class="badge bg-primary m-1">💬 {{ post.comments.length }} Comments</span>
               <span class="badge bg-danger m-1" (click)="deletePost(post.id)" style="cursor: pointer;">Delete</span>
@@ -49,7 +50,7 @@
         </li>
       </ul>
     </nav>
-    
-    
+
+
   </main>
 </div>

@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import {  HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Add this import
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule]  
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule]  
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -18,7 +19,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       phone: ['', [Validators.required, Validators.pattern(/^\+?\d{10,15}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
   moveLogin(): void {

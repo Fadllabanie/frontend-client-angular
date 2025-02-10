@@ -101,6 +101,7 @@ export class PostsComponent implements OnInit {
       }
     });
   }
+
   deletePost(postId: number) {
     this.postService.deletePost(postId).subscribe({
       next: (response) => {
@@ -110,6 +111,8 @@ export class PostsComponent implements OnInit {
         console.log('Post deleted successfully:', response);
       },
       error: (error) => {
+        const errorResponse = error.error;
+        alert(`Error deleting post: ${errorResponse.error}`);
         console.error('Error disliking post:', error);
       }
     });
