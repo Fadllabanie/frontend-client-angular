@@ -55,7 +55,11 @@ export class UpdatePostComponent implements OnInit {
           this.router.navigate(['/posts']);
           alert('Post updated successfully');
         },
-        error: (error) => alert('Error updating post: ' + error)
+        error: (error) => {
+          const errorResponse = error.error;
+          alert(`Error updating post: ${errorResponse.error}`);
+          console.error('Error updating post:', error);
+        }
       });
     }
   }
