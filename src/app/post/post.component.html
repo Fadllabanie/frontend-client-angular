@@ -1,23 +1,46 @@
 <!-- posts.component.html -->
-<div class="posts-container">
-    <h2>Latest Posts</h2>
-    
-    <div *ngFor="let post of posts" class="post-card">
-      <h3>{{ post.title }}</h3>
-      <p class="content">{{ post.content }}</p>
-      <div class="post-meta">
-        <span>Posted on: {{ post.createdAt | date }}</span>
-        <span>Likes: {{ post.likes }}</span>
+<div class="container mt-4">
+  <header class="d-flex justify-content-between align-items-center">
+    <h1>FawryBook Posts</h1>
+    <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="btn btn-danger">
+      Logout
+    </button>
+  </header>
+
+  <main>
+    <div class="row">
+      <!-- Use the card component for each post -->
+      <div *ngFor="let post of posts" class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+          </div>
+          <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+            <small class="text-muted">📅 {{ post.createdAt | date: 'mediumDate' }}</small>
+            <div>
+              <span class="badge bg-primary">❤️ {{ post.likes }} Likes</span>
+              <span class="badge bg-info">💬 {{ post.comments.length }} Comments</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  
-    <div class="pagination">
-      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">
-        Previous
-      </button>
-      <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
-      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">
-        Next
-      </button>
-    </div>
-  </div>
+
+    <!-- Pagination controls -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <a class="page-link" href="#" (click)="changePage(currentPage - 1)" aria-label="Previous">
+            <span aria-hidden="true">&laquo; Previous</span>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+          <a class="page-link" href="#" (click)="changePage(currentPage + 1)" aria-label="Next">
+            <span aria-hidden="true">Next &raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </main>
+</div>
