@@ -28,7 +28,7 @@
               <span class="badge bg-primary m-1">💬 {{ post.comments.length }} Comments</span>
               <span class="badge bg-danger m-1" (click)="deletePost(post.id)" style="cursor: pointer;">Delete</span>
               <span class="badge bg-info m-1" (click)="updatePost(post.id)" style="cursor: pointer;">update</span>
-
+              <span class="badge bg-info m-1" (click)="shareOnTwitter(post.title, post.content)" style="cursor: pointer;">Share on Twitter</span>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { PostService } from '../post.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -20,6 +21,7 @@ export class PostsComponent implements OnInit {
   constructor(
     private postService: PostService,
     public authService: AuthService,
+    private http: HttpClient,
     private router: Router
   ) { }
 
@@ -123,5 +125,23 @@ export class PostsComponent implements OnInit {
 
   openPostDetails(postId: number) {
     this.router.navigate(['/posts', postId]);
+  }
+
+  shareOnTwitter(title: string,content: string): void {
+    const tweetMessage = `New Post: ${title}\n\n${content}`;
+
+    this.http.post('/api/twitter/tweet', tweetMessage, { responseType: 'text' })
+      .subscribe({
+        next: (response) => {
+          console.log('Tweet tweetMessage:', tweetMessage);
+
+          console.log('Tweet posted successfully:', response);
+          alert('Post shared on Twitter!');
+        },
+        error: (error) => {
+          console.error('Failed to post tweet:', error);
+          alert('Failed to share post on Twitter.');
+        }
+      });
   }
 }
