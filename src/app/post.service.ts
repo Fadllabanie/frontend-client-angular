@@ -17,6 +17,7 @@ export class PostService {
   }
 
   addPost(post: any) {
+    return this.http.post<any>(this.postsUrl, post);
     // API call to add a new post
   }
 

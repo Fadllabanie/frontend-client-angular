@@ -4,6 +4,9 @@
     <h1>FawryBook Posts</h1>
     <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="btn btn-danger">
       Logout
+    </button> 
+    <button *ngIf="authService.isLoggedIn()" (click)="addPost()" class="btn btn-primary">
+      Add Post
     </button>
   </header>
 

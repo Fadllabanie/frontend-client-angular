@@ -48,4 +48,8 @@ export class PostsComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  addPost(): void {
+    this.router.navigate(['/posts/new']);
+  }
 }
