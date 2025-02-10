@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
   private postsUrl = 'http://localhost:8012/api/v1/posts';
+  private commentsUrl = 'http://localhost:8012/api/v1/comments';
+
   constructor(private http: HttpClient) { }
 
   getPosts(page: number = 0, size: number = 10): Observable<any> {
@@ -19,7 +21,7 @@ export class PostService {
   getPostById(id: number): Observable<any> {
     return this.http.get<any>(`${this.postsUrl}/${id}`);
   }
-  
+
   likePost(postId: number): Observable<any> {
     return this.http.post<any>(`${this.postsUrl}/${postId}/like`, {});
   }
@@ -40,4 +42,12 @@ export class PostService {
   }
 
 
+  addComment(postId: number, text: string) {
+    return this.http.post(`${this.commentsUrl}/${postId}`, { text });
+  }
+
+  deleteComment(commentId: number) {
+    return this.http.delete(`${this.commentsUrl}/${commentId}`);
+  }
+  
 }

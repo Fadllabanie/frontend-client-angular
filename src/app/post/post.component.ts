@@ -102,4 +102,8 @@ export class PostsComponent implements OnInit {
   updatePost(postId: number) {
     this.router.navigate(['/posts/update', postId]);
   }
+
+  openPostDetails(postId: number) {
+    this.router.navigate(['/posts', postId]);
+  }
 }
