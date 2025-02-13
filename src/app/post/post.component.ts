@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { TweetService } from '../TweetService';
 
 @Component({
   selector: 'app-posts',
@@ -24,7 +23,6 @@ export class PostsComponent implements OnInit {
     public authService: AuthService,
     private http: HttpClient,
     private router: Router,
-    private tweetService: TweetService
   ) { }
 
   ngOnInit(): void {
