@@ -44,12 +44,12 @@ export class PostsComponent implements OnInit {
     event.preventDefault(); 
     if (newPage >= 0 && newPage < this.totalPages) {
       this.currentPage = newPage;
-      this.fetchPosts(this.currentPage); // Call the function to fetch new data based on the new page
+      this.fetchPosts(this.currentPage); 
 
     }
   }
   fetchPosts(page: number): void {
-    // Assume you have a service that fetches posts
+   
     this.postService.getPosts(page).subscribe({
       next: (response) => {
         this.posts = response.data.content;
@@ -75,7 +75,7 @@ export class PostsComponent implements OnInit {
       next: (response) => {
         const index = this.posts.findIndex(post => post.id === postId);
         if (index !== -1) {
-          this.posts[index].likes++;  // Increment likes locally
+          this.posts[index].likes++;  
         }
         alert('Post liked successfully');
 
@@ -91,7 +91,7 @@ export class PostsComponent implements OnInit {
       next: (response) => {
         const index = this.posts.findIndex(post => post.id === postId);
         if (index !== -1) {
-          this.posts[index].likes--;  // Increment likes locally
+          this.posts[index].likes--;  
         }
         alert('Post disliked successfully');
         console.log('Post disliked successfully:', response);

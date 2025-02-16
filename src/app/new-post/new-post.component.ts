@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { HttpClientModule } from '@angular/common/http';
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Add this import
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-new-post',

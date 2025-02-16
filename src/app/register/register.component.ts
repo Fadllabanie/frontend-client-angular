@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import {  HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Add this import
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -31,11 +31,9 @@ export class RegisterComponent {
         next: (response) => {
           console.log('User registered successfully', response);
           this.router.navigate(['/posts']);
-          // Handle further actions like redirection or display success message
         },
         error: (error) => {
           console.error('Registration failed', error);
-          // Handle errors, show user feedback
         }
       });
     } else {

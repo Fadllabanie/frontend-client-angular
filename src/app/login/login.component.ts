@@ -31,11 +31,11 @@ export class LoginComponent {
         next: (response) => {
           console.log('User logged in successfully', response);
           this.router.navigate(['/posts']);
-          // Handle further actions like redirection or display success message
+         
         },
         error: (error) => {
           console.error('Login failed', error);
-          // Handle errors, show user feedback
+         
         }
       });
     } else {

@@ -10,7 +10,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(appRoutes),
     provideHttpClient(
-      withInterceptors([authInterceptor]) // Use the functional interceptor
+      withInterceptors([authInterceptor]) 
     )
   ]
 }).catch(err => console.error(err));

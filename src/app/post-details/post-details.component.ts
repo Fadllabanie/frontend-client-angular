@@ -18,8 +18,8 @@ export class PostDetailsComponent implements OnInit {
   post: any;
   error: string | undefined;
   postId: number = 0;
-  newCommentText: string = ''; // Declare the property here
-    data: any; // Replace 'any' with the actual type if known
+  newCommentText: string = ''; 
+    data: any; 
     
   constructor(
     private postService: PostService,
@@ -28,7 +28,7 @@ export class PostDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const postId = +params['id']; // Convert to number if necessary
+      const postId = +params['id']; 
       this.loadPost(postId);
 
     });
@@ -37,8 +37,8 @@ export class PostDetailsComponent implements OnInit {
   loadPost(id: number): void {
     this.postService.getPostById(id).subscribe({
       next: (response) => {
-        console.log('Post Data:', response); // Check what is actually being returned
-        this.post = response.data; // Make sure this is how your data is structured
+        console.log('Post Data:', response);
+        this.post = response.data; 
       },
       error: (err) => {
         this.error = 'Failed to load post.';
@@ -49,8 +49,8 @@ export class PostDetailsComponent implements OnInit {
   addComment(): void {
     this.postService.addComment(this.post.id, this.newCommentText).subscribe({
       next: (response) => {
-        console.log('response Data:', response); // Check what is actually being returned
-        this.newCommentText = ''; // Reset input field
+        console.log('response Data:', response); 
+        this.newCommentText = ''; 
         this.loadPost(this.post.id);
 
       },

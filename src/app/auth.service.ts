@@ -35,14 +35,6 @@ export class AuthService {
         }
       })
     );
-
-    // return this.http.post<any>(this.registerUrl, user)
-    //   .pipe(
-    //     catchError((error) => {
-    //       console.error('Error occurred:', error);
-    //       return throwError(() => new Error('Error in registration process'));
-    //     })
-    //   );
   }
 
 
